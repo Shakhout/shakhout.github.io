@@ -2,53 +2,51 @@
 
 Personal portfolio site for Md. Shakhout Hossain, served as-is by GitHub Pages
 (`shakhout.github.io`). No build step, package manager, tests, or linters —
-edit files and they deploy directly.
+edit files and they deploy directly. Content source of truth is the owner's CV.
 
 ## Layout
 
-- `index.html` — the entire site. Six `<section class="page section-*">` blocks:
-  `home`, `contact`, `skills`, `about`, `portfolio`, `blog`. All but home start `hidden`.
-- `js/script.js` — the only custom JS. Everything else in `js/` is vendored.
-- `css/style1.css` — active theme (`<link id="StyleSheet">`). `style2`–`style5` are
-  unused colour variants of the same file; keep them in sync only if theme switching is revived.
-- `css/responsive.css` — breakpoints. `css/bootstrap/` = Bootstrap 2.x, `css/fontawesome/` = Font Awesome 3 (`icon-*` classes).
-- `images/works/` — portfolio screenshots. `images/shakil.jpg` — home avatar.
-- `php/contact.php` — mail handler for the contact form (does NOT run on GitHub Pages).
+- `index.html` — the whole single-page site. Sections (by id): `top` (hero), `about`,
+  `experience`, `skills`, `work`, `education`, `contact`. Inline SVG icon sprite at the top of
+  `<body>` (`<use href="#i-name">`).
+- `assets/css/main.css` — only stylesheet. Design tokens in `:root` (black theme, lime accent
+  `--accent` + `--accent-rgb`). BEM-ish class names (`block__element--modifier`).
+- `assets/js/main.js` — ES module entry; one `init*` function per feature, all called at the bottom.
+- `assets/js/hero-canvas.js` — interactive particle network (pointer attract, click shockwave).
+- `assets/img/` — `portrait.webp/.jpg`, `favicon.svg`, `projects/*.webp` (800×533).
+- `404.html`, `robots.txt`, `sitemap.xml`, `.nojekyll`.
 
 ## How the page works
 
-- Navigation is animated show/hide, not routing. `.menu-item a[href="#id"]` →
-  `closeSection(home)` then `openSection(#id)`. Close buttons use `data-closing-id`.
-- Only elements with class `init` (initially also `hidden`) are animated in/out
-  (animate.css `bounceInDown` / `bounceOutUp`). New content blocks inside a section
-  should sit inside an existing `init` container or carry `init hidden` themselves.
-- After a section opens, `setupSkills`, `checkContactForm`, `setupPortfolio`, `setupMap`
-  run; each only acts if its target exists in `.page.current`.
-- Skills: `<canvas class="skill" data-level="0-100">` rendered by gauge.js.
-- Portfolio: items are `.portfolio-item` with `data-groups='["php","node",...]'`; filters are
-  `.filter-options li[data-group]` (Shuffle). Clicking opens prettyPhoto using the `<a>`'s
-  `href` (image) and `title` (HTML caption).
-- `script.js` is mostly hex-escape obfuscated (`["\x72\x65..."]`) from the original template;
-  decode before editing logic. The contact-form handler is plain JS.
+- Normal scrolling page with anchor nav; active link via IntersectionObserver.
+- `<html class="js">` is set inline in `<head>`; hidden-until-revealed styles are gated on `.js`
+  so the page is fully readable without JS.
+- Behaviour hooks are data attributes: `data-reveal` (fade/slide in; uses the CSS `translate`
+  property so it composes with `transform`), `data-spotlight` (cursor-following border glow),
+  `data-tilt` (3D tilt via `--rx/--ry`), `data-magnetic` (buttons), `data-count` (counters),
+  `data-scramble` (hero name), `data-copy` (clipboard + toast).
+- Projects: `.project[data-groups="php codeigniter"]` filtered by `.filter[data-filter]`
+  (uses View Transitions when available). Clicking `.project__open` fills the native
+  `<dialog class="lightbox">` from its `data-title/-image/-desc/-url`.
+- `prefers-reduced-motion` disables the canvas loop, typing, scramble, tilt and transitions.
+  Pointer effects only run for `(hover: hover) and (pointer: fine)`.
 
-## Stack / constraints
+## Constraints
 
-- jQuery 1.9.1 + jquery-migrate, Bootstrap 2 grid (`row-fluid`, `spanN`), Font Awesome 3.
-- Static hosting only: no server-side code executes on GitHub Pages.
+- Static hosting only — no server-side code. Contact is `mailto:` + copy button.
+- No external JS; only external resource is Google Fonts (Space Grotesk, JetBrains Mono).
+- Run locally with `python3 -m http.server` (ES modules don't load over `file://`).
 
-## Known issues (as of 2026-09)
+## Known issues / TODO (as of 2026-09)
 
-- Contact form POSTs to `php/contact.php` — fails on GitHub Pages. The PHP also inserts
-  unescaped `$_POST` into HTML mail and uses placeholder `From: webmaster@example.com`.
-- Google Maps script loaded without API key (and with obsolete `sensor=`); map is centred
-  on Dhaka coords in `script.js` while the page says Munich.
-- `$.fn.orbit` recursion is commented out, so menu bubbles are positioned once, not animated.
-- Stray `</div>` near `index.html:753` (end of blog section).
-- Stale content: Google+ link, Intel role "Oct 2017 – Present", blog is a "coming soon" image,
-  all skill levels 100, stray `.lnk` file in `images/prettyPhoto/dark_square/`.
+- Project descriptions for Z-Exam, ZonderTask, CSPP, CRMPP, KartBD are generic placeholders;
+  their external links were carried over from the old site and not re-verified.
+- GitHub profile link assumes `github.com/Shakhout`.
+- No downloadable CV yet (add e.g. `assets/cv.pdf` and a button if wanted).
 
 ## Conventions
 
-- 4-space indentation in HTML/JS; match surrounding markup patterns when adding
-  experience/portfolio/skill entries (copy an existing sibling block).
+- 4-space indentation in HTML/CSS/JS; match surrounding markup when adding
+  experience/project/skill entries (copy an existing sibling block).
+- New images: WebP, metadata stripped, with explicit `width`/`height` and `loading="lazy"`.
 - Keep this file updated when structure or known issues change.
