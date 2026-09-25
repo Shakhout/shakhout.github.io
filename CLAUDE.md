@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-Personal portfolio site for Md. Shakhout Hossain, served as-is by GitHub Pages
+Personal portfolio site for MD Shakhout Hossain, served as-is by GitHub Pages
 (`shakhout.github.io`). No build step, package manager, tests, or linters —
 edit files and they deploy directly. Content source of truth is the owner's CV.
 

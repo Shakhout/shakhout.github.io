@@ -1,6 +1,6 @@
 # shakhout.github.io
 
-Personal portfolio of **Md. Shakhout Hossain**, Senior Full-Stack Developer in München.
+Personal portfolio of **MD Shakhout Hossain**, Senior Full-Stack Developer in München.
 Live at <https://shakhout.github.io/>.
 
 A static, dependency-free site: hand-written HTML, CSS and ES-module JavaScript, served
