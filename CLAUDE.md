@@ -9,7 +9,7 @@ edit files and they deploy directly. Content source of truth is the owner's CV.
 - `index.html` — the whole single-page site. Sections (by id): `top` (hero), `about`,
   `experience`, `skills`, `work`, `education`, `contact`. Inline SVG icon sprite at the top of
   `<body>` (`<use href="#i-name">`).
-- `assets/css/main.css` — only stylesheet. Design tokens in `:root` (black theme, lime accent
+- `assets/css/main.css` — only stylesheet. Design tokens in `:root` (black theme, red accent
   `--accent` + `--accent-rgb`). BEM-ish class names (`block__element--modifier`).
 - `assets/js/main.js` — ES module entry; one `init*` function per feature, all called at the bottom.
 - `assets/js/hero-canvas.js` — interactive particle network (pointer attract, click shockwave).

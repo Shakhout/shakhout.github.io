@@ -17,10 +17,11 @@
     --text: #ededee;
     --text-muted: #9b9ba3;
     --text-faint: #6b6b73;
-    --accent: #c6ff3d;
-    --accent-rgb: 198, 255, 61;
-    --accent-ink: #0a0f00;
-    --danger: #ff6b6b;
+    --accent: #ff4545;
+    --accent-rgb: 255, 69, 69;
+    --accent-ink: #140000;
+    --danger: #ffb547;
+    --success: #5ee28a;
 
     --font-sans: "Space Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
@@ -130,6 +131,7 @@ button {
 .text-accent { color: var(--accent); }
 .text-muted { color: var(--text-muted); }
 .text-danger { color: var(--danger); }
+.text-success { color: var(--success); }
 
 .visually-hidden {
     position: absolute !important;

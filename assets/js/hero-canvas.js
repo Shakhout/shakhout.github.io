@@ -20,7 +20,7 @@ export function initHeroCanvas(canvas, { reducedMotion = false } = {}) {
         return;
     }
 
-    const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent-rgb').trim() || '198, 255, 61';
+    const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent-rgb').trim() || '255, 69, 69';
     const pointer = { x: 0, y: 0, active: false };
     let particles = [];
     let pulses = [];
