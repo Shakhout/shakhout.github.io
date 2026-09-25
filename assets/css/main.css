@@ -438,19 +438,11 @@ button {
     position: relative;
     display: inline-flex;
     align-items: baseline;
-    gap: 6px;
     padding: 8px 14px;
     border-radius: 999px;
     color: var(--text-muted);
     font-size: .95rem;
     transition: color .2s, background-color .2s;
-}
-
-.nav__num {
-    font-family: var(--font-mono);
-    font-size: .7rem;
-    color: var(--accent);
-    opacity: .8;
 }
 
 .nav__link:hover,
@@ -513,10 +505,6 @@ button {
         font-size: 2rem;
         font-weight: 500;
         color: var(--text);
-    }
-
-    .nav__num {
-        font-size: .9rem;
     }
 }
 
