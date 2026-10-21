@@ -565,7 +565,7 @@ button {
 .hero__status {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     margin-bottom: 28px;
     padding: 7px 14px 7px 12px;
     border: 1px solid var(--border-strong);
@@ -575,27 +575,6 @@ button {
     font-size: .88rem;
     -webkit-backdrop-filter: blur(6px);
     backdrop-filter: blur(6px);
-}
-
-.status-dot {
-    position: relative;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--accent);
-}
-
-.status-dot::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background: inherit;
-    animation: ping 2s var(--ease-out) infinite;
-}
-
-@keyframes ping {
-    to { transform: scale(3); opacity: 0; }
 }
 
 .hero__title {
