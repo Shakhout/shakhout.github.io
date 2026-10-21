@@ -1400,7 +1400,11 @@ button {
     gap: 20px 28px;
 }
 
-.contact__email {
+.contact__lead {
+    flex-basis: 100%;
+}
+
+.contact__site {
     position: relative;
     font-size: clamp(1.5rem, 5vw, 3rem);
     font-weight: 500;
@@ -1408,7 +1412,7 @@ button {
     overflow-wrap: anywhere;
 }
 
-.contact__email::after {
+.contact__site::after {
     content: "";
     position: absolute;
     left: 0;
@@ -1421,8 +1425,8 @@ button {
     transition: transform .5s var(--ease-out);
 }
 
-.contact__email:hover::after,
-.contact__email:focus-visible::after {
+.contact__site:hover::after,
+.contact__site:focus-visible::after {
     transform: scaleX(1);
 }
 

@@ -34,7 +34,8 @@ edit files and they deploy directly. Content source of truth is the owner's CV.
 
 ## Constraints
 
-- Static hosting only — no server-side code. Contact is `mailto:` + copy button.
+- Static hosting only — no server-side code. Contact section points to `shakhout.com`
+  (no email/phone on this site by owner's choice).
 - No external JS; only external resource is Google Fonts (Space Grotesk, JetBrains Mono).
 - Run locally with `python3 -m http.server` (ES modules don't load over `file://`).
 
