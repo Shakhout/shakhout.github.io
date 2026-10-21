@@ -20,7 +20,8 @@ edit files and they deploy directly. Content source of truth is the owner's CV.
 
 - Normal scrolling page with anchor nav; active link via IntersectionObserver.
 - `<html class="js">` is set inline in `<head>`; hidden-until-revealed styles are gated on `.js`
-  so the page is fully readable without JS.
+  so the page is fully readable without JS. The module `<script>` removes `.js` again `onerror`
+  (e.g. opened via `file://`, where modules are blocked) so content doesn't stay hidden.
 - Behaviour hooks are data attributes: `data-reveal` (fade/slide in; uses the CSS `translate`
   property so it composes with `transform`), `data-spotlight` (cursor-following border glow),
   `data-tilt` (3D tilt via `--rx/--ry`), `data-magnetic` (buttons), `data-count` (counters),
