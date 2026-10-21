@@ -316,7 +316,9 @@ function initFilters() {
             buttons.forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
             const filter = button.dataset.filter;
             if (document.startViewTransition && !reducedMotion) {
-                document.startViewTransition(() => apply(filter));
+                // `ready` rejects when a newer click (or a hidden tab) skips the animation;
+                // the DOM update still runs, so the rejection is safe to ignore.
+                document.startViewTransition(() => apply(filter)).ready.catch(() => {});
             } else {
                 apply(filter);
             }
