@@ -15,6 +15,8 @@ edit files and they deploy directly. Content source of truth is the owner's CV.
 - `assets/js/hero-canvas.js` — interactive particle network (pointer attract, click shockwave).
 - `assets/img/` — `portrait.webp/.jpg`, `favicon.svg`, `projects/*.webp` (800×533).
 - `404.html`, `robots.txt`, `sitemap.xml`, `.nojekyll`.
+- `google9e91d4f0f1de10fb.html` + `google-site-verification` meta in `index.html` — Google
+  Search Console ownership proof. Don't remove.
 
 ## How the page works
 
