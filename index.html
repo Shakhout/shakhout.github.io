@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-g/85hwPAHnfC94dTFcvecI4jqI0qjtDDn+frtPvvfV8='; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
     <title>MD Shakhout Hossain — Senior Full-Stack Developer</title>
     <meta name="description" content="MD Shakhout Hossain is a Senior Full-Stack Developer in Munich with 10+ years building SaaS platforms with PHP, Symfony, Java, Node.js, React and TypeScript.">
     <meta name="author" content="MD Shakhout Hossain">
@@ -25,13 +26,19 @@
     <meta name="twitter:card" content="summary">
 
     <link rel="icon" href="assets/img/favicon.svg?v=2" type="image/svg+xml">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+    <link rel="preload" href="assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="assets/css/main.css">
 
-    <script>document.documentElement.classList.add('js');</script>
-    <script type="module" src="assets/js/main.js" onerror="document.documentElement.classList.remove('js')"></script>
+    <script>
+        document.documentElement.classList.add('js');
+        // If the module can't load (e.g. opened via file://), drop .js so content isn't left hidden.
+        window.addEventListener('error', (event) => {
+            if (event.target instanceof HTMLScriptElement) {
+                document.documentElement.classList.remove('js');
+            }
+        }, true);
+    </script>
+    <script type="module" src="assets/js/main.js"></script>
 
     <script type="application/ld+json">
     {
@@ -561,8 +568,8 @@
                         <p class="job__date mono">Languages</p>
                         <h3 class="edu__title">English &amp; German</h3>
                         <ul class="langs">
-                            <li><span>English</span><span class="langs__bar" style="--level: 1"></span><span class="mono">Expert</span></li>
-                            <li><span>German</span><span class="langs__bar" style="--level: .5"></span><span class="mono">B1</span></li>
+                            <li><span>English</span><span class="langs__bar langs__bar--full"></span><span class="mono">Expert</span></li>
+                            <li><span>German</span><span class="langs__bar langs__bar--half"></span><span class="mono">B1</span></li>
                         </ul>
                     </article>
                     <article class="edu__item card" data-reveal data-spotlight>
@@ -620,6 +627,5 @@
         </div>
     </dialog>
 
-    <div class="toast" role="status" aria-live="polite"></div>
 </body>
 </html>

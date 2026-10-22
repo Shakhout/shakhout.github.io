@@ -360,32 +360,6 @@ function initLightbox() {
     });
 }
 
-/* Contact: copy email
-   ========================================================================== */
-
-function initCopy() {
-    const toast = $('.toast');
-    let timer = 0;
-
-    function showToast(message) {
-        toast.textContent = message;
-        toast.classList.add('is-visible');
-        clearTimeout(timer);
-        timer = setTimeout(() => toast.classList.remove('is-visible'), 2200);
-    }
-
-    $$('[data-copy]').forEach((button) => {
-        button.addEventListener('click', async () => {
-            try {
-                await navigator.clipboard.writeText(button.dataset.copy);
-                showToast('Email copied to clipboard');
-            } catch {
-                showToast(button.dataset.copy);
-            }
-        });
-    });
-}
-
 /* Boot
    ========================================================================== */
 
@@ -403,7 +377,6 @@ initTimeline();
 initPointerEffects();
 initFilters();
 initLightbox();
-initCopy();
 
 $$('[data-year]').forEach((el) => {
     el.textContent = new Date().getFullYear();

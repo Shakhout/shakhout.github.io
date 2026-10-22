@@ -14,18 +14,21 @@ edit files and they deploy directly. Content source of truth is the owner's CV.
 - `assets/js/main.js` — ES module entry; one `init*` function per feature, all called at the bottom.
 - `assets/js/hero-canvas.js` — interactive particle network (pointer attract, click shockwave).
 - `assets/img/` — `portrait.webp/.jpg`, `favicon.svg`, `projects/*.webp` (800×533).
+- `assets/fonts/` — self-hosted variable WOFF2 (Space Grotesk 400–700, JetBrains Mono 400–500),
+  latin + latin-ext subsets; `@font-face` rules at the top of `main.css`.
 - `404.html`, `robots.txt`, `sitemap.xml`, `.nojekyll`.
 
 ## How the page works
 
 - Normal scrolling page with anchor nav; active link via IntersectionObserver.
 - `<html class="js">` is set inline in `<head>`; hidden-until-revealed styles are gated on `.js`
-  so the page is fully readable without JS. The module `<script>` removes `.js` again `onerror`
-  (e.g. opened via `file://`, where modules are blocked) so content doesn't stay hidden.
+  so the page is fully readable without JS. The same inline script removes `.js` again if a
+  script fails to load (e.g. opened via `file://`, where modules are blocked) so content doesn't
+  stay hidden.
 - Behaviour hooks are data attributes: `data-reveal` (fade/slide in; uses the CSS `translate`
   property so it composes with `transform`), `data-spotlight` (cursor-following border glow),
   `data-tilt` (3D tilt via `--rx/--ry`), `data-magnetic` (buttons), `data-count` (counters),
-  `data-scramble` (hero name), `data-copy` (clipboard + toast).
+  `data-scramble` (hero name).
 - Projects: `.project[data-groups="php codeigniter"]` filtered by `.filter[data-filter]`
   (uses View Transitions when available). Clicking `.project__open` fills the native
   `<dialog class="lightbox">` from its `data-title/-image/-desc/-url`.
@@ -36,7 +39,12 @@ edit files and they deploy directly. Content source of truth is the owner's CV.
 
 - Static hosting only — no server-side code. Contact section points to `shakhout.com`
   (no email/phone on this site by owner's choice).
-- No external JS; only external resource is Google Fonts (Space Grotesk, JetBrains Mono).
+- No external resources at all (fonts are self-hosted; no Google Fonts, for GDPR).
+- Both pages set a strict CSP via `<meta http-equiv="Content-Security-Policy">`: everything
+  `'self'`, no inline styles or `style=""` attributes, no inline event handlers. The one inline
+  `<script>` in `index.html` is allowed by its `sha256-` hash — if you edit that script (even
+  whitespace), recompute the hash, e.g.
+  `python3 -c "import re,hashlib,base64;s=re.search(r'<script>(.*?)</script>',open('index.html').read(),re.S)[1];print(base64.b64encode(hashlib.sha256(s.encode()).digest()).decode())"`.
 - Run locally with `python3 -m http.server` (ES modules don't load over `file://`).
 
 ## Known issues / TODO (as of 2026-09)
